@@ -1,2 +1,2 @@
-# DevC-Exercise3
-DevC Exercise 3
+# DevC JavaScript Development Course
+Exercise 3
