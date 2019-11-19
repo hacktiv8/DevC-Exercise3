@@ -1,0 +1,26 @@
+table,th,td,#dataplanets,.datajs {
+  border: 1px solid black;
+  font-size: 25px;
+  padding: 5px;
+  margin:0px;
+  background-color: Gold;
+}
+th{
+  border: 1px solid black;
+  font-size: 25px;
+  padding: 5px;
+  margin:0px;
+  font-weight: bold;
+  background-color: Navy;
+  color: Beige;
+  opacity: 0.8;
+}
+#myInput {
+  background-position: 10px 12px;
+  background-repeat: no-repeat;
+  width: 80%;
+  font-size: 16px;
+  padding: 12px 20px 12px 40px;
+  border: 1px solid #ddd;
+  margin-bottom: 12px;
+}
