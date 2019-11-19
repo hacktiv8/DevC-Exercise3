@@ -4,8 +4,61 @@
     <title>Exercise 3</title>
 </head>
 <body>
+
     <center>
-        <h1>Daftar Planet</h1>
+        <h1>Planet List</h1>
     </center>
+    <input type="text" id="myInput" onkeyup="myFunction()"
+      placeholder="Search for planets names..">
+    <table id="myTable">
+      <thead>
+        <tr>
+        <th>Name</th>
+        <th>Diameter</th>
+        <th>Climate</th>
+      </tr>
+      </thead>
+      <tbody id="dataplanets">
+
+      </tbody>
+    </table>
+
+    <script>
+      var output="";
+      for(var i=1;i<62;i++){
+        fetch("https://swapi.co/api/planets/"+i)
+            .then(res => res.json())
+            .then((out) => {
+            output += '<tr><td>'+out.name+'</td>'
+            output += '<td>'+ out.diameter+'</td>'
+            output += '<td>'+ out.climate+'</td></tr>'
+            console.log('planets: ', out.name,i);
+            document.getElementById("dataplanets").innerHTML = output;
+        }).catch(err => console.error(err));
+      }
+
+      function myFunction() {
+        var input, filter, table, tr, td, i, txtValue;
+        input = document.getElementById("myInput");
+        filter = input.value.toUpperCase();
+        table = document.getElementById("myTable");
+        tr = table.getElementsByTagName("tr");
+
+        for (i = 0; i < tr.length; i++) {
+          td = tr[i].getElementsByTagName("td")[0];
+          if (td) {
+            txtValue = td.textContent || td.innerText;
+            if (txtValue.toUpperCase().indexOf(filter) > -1) {
+              tr[i].style.display = "";
+            } else {
+              tr[i].style.display = "none";
+            }
+          }
+        }
+      }
+
+    </script>
+    <link rel="stylesheet" href="./style.css" type="text/css"></link>
+
 </body>
 </html>
