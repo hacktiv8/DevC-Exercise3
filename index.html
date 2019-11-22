@@ -1,11 +1,63 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
     <title>Exercise 3</title>
+    <link rel="stylesheet" href="style.css">
+    </link>
 </head>
+
 <body>
     <center>
         <h1>Daftar Planet</h1>
     </center>
+
+    <input type="text" id="input" onkeyup="cari()" placeholder="Search planets here...">
+    <table id="table">
+        <thead>
+            <tr>
+                <th>First Name</th>
+                <th>Last Name</th>
+                <th>Points</th>
+            </tr>
+        </thead>
+        <tbody id="planet">
+
+        </tbody>
+    </table>
+
+    <script>
+        var output = "";
+        for (var x = 1; x <= 62; x++) {
+            fetch("https://swapi.co/api/planets/" + x)
+                .then(res => res.json())
+                .then((out) => {
+                    output = output + '<tr>'
+                    output = output + '<td>' + out.name + '</td>'
+                    output = output + '<td>' + out.diameter + '</td>'
+                    output = output + '<td>' + out.climate + '</td>'
+                    output = output + '</tr>'
+                    document.getElementById("planet").innerHTML = output;
+                }).catch(err => console.error(err));
+        }
+
+        function cari() {
+            var input = document.getElementById("input");
+            var filter = input.value.toUpperCase();
+            var table = document.getElementById("table");
+            var tr = table.getElementsByTagName("tr");
+            for (x = 0; x < tr.length; x++) {
+                td = tr[x].getElementsByTagName("td")[0];
+                if (td) {
+                    txtValue = td.textContent || td.innerText;
+                    if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                        tr[x].style.display = "";
+                    } else {
+                        tr[x].style.display = "none";
+                    }
+                }
+            }
+        }
+    </script>
 </body>
 </html>
